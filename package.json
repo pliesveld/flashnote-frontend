@@ -7,6 +7,8 @@
     "bower": "^1.7.9",
     "grunt-bower": "^0.21.0",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.6.0",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
@@ -20,7 +22,7 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "gulp" : "gulp",
+    "gulp": "gulp",
     "start": "http-server -a localhost -p 8000 -c-1",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
