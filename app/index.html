@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Categories Description</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-theme.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+<style type="text/css">
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+</style>
+</head>
+<body ng-app="flashnoteApp" ng-cloak class="ng-cloak">
+
+    <div ng-controller="navigation as nav" class="container demo-nav">
+        <ul class="nav nav-pills" role="tablist">
+            <li ng-class="{active:nav.tab('home')}"><a href="#/"><span class="glyphicon glyphicon-home"></span> home</a></li>
+            <li ng-show="!nav.authenticated()" ng-class="{active:nav.tab('LoginController')}"><a href="#/login">login</a></li>
+            <li ng-show="!nav.authenticated()" ng-class="{active:nav.tab('SignupController')}"><a href="#/sign-up">sign-up</a></li>
+            <li ng-show="nav.authenticated()"><a href="" ng-click="nav.logout()">logout</a></li>
+        </ul>
+    </div>
+
+    <div ng-view="view-frame" class="container"></div>
+
+
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<script src="app.js"></script>
+
+
+<script src="view.navigation/navigation.module.js"></script>
+<script src="view.navigation/navigation.controller.js"></script>
+<script src="view.navigation/signup-directive.js"></script>
+<script src="view.navigation/signup.controller.js"></script>
+<script src="view.navigation/login.controller.js"></script>
+
+
+<script src="view.home/home.js"></script>
+
+<script src="components/debug/log.http-interceptor.factory.js"></script>
+
+<script src="components/resource/resource.module.js"></script>
+<script src="components/resource/resource.controller.js"></script>
+<script src="components/resource/resource.factory.js"></script>
+
+<script src="components/auth/session.service.js"></script>
+<script src="components/auth/auth.module.js"></script>
+<script src="components/auth/auth.factory.js"></script>
+<script src="components/auth/authInjector.factory.js"></script>
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+.demo-body {
+    background: rgb(255, 217, 179);
+}
+
+.demo-view {
+    background: rgba(120, 120, 255, 0.125)
+ 
+}
+
+.demo-nav {
+    background: rgb(242, 242, 242);
+}
+
+.demo-content {
+    padding: 15px;
+    font-size: 18px;
+    min-height: 300px;
+    background: rgb(255, 179, 179);
+    margin-bottom: 10px;
+}
+
+.demo-test
+{
+    background: rgb(255, 102, 102);
+}
+
+
+/*
+ * Home page CSS style-sheets
+ */
+.home-content {
+    padding: 15px;
+    min-height: 50px;
+    margin: 10px 0px;
+}
