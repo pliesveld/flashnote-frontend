@@ -1,5 +1,6 @@
 angular.module('flashnoteApp.view.nav', [
-'ngRoute', 
+'ui.router', 
+'flashnoteApp.controller.welcome',
 'flashnoteApp.controller.navigation',
 'flashnoteApp.controller.signup',
 'flashnoteApp.controller.login',

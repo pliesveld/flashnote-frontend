@@ -1,19 +1,7 @@
-angular.module('flashnoteApp.controller.login', ['ngRoute', 'auth'])
-    .config(function($routeProvider) {
-        $routeProvider.when('/login', {
-                templateUrl: 'view.navigation/login.html',
-                controller: 'LoginController',
-                controllerAs: 'controller'
-        })
-    })
-
-    .controller('LoginController',
-		function LoginController($route, $http, $log, auth) {
+angular.module('flashnoteApp.controller.login', ['ui.router', 'auth'])
+    .controller('LoginCtrl',
+		function LoginController($state, $http, $log, auth) {
 			var self = this;
-
-			self.tab = function(route) {
-				return $route.current && route === $route.current.controller;
-			};
 
             self.credentials = { 'username':null, 'password':null, 'rememberme':false };
 
@@ -22,6 +10,7 @@ angular.module('flashnoteApp.controller.login', ['ngRoute', 'auth'])
                     if(authenticated) {
                         $log.debug("login successful");
                         self.error = false;
+                        $state.go('home');
                     } else {
                         $log.debug("login unsuccessful");
                         self.error = true;

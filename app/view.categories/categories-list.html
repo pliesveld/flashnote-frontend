@@ -1,0 +1,17 @@
+<table class="table">
+    <tr>
+        <td>
+            <h3>categories</h3>
+        </td>
+       <td></td>
+       <td></td>
+    </tr>
+    <tr ng-repeat="category in categories">
+        <td>{{category.name}}</td>
+        <td>{{category.description}} {{category.count}}</td>
+        <td>
+            <a class="btn btn-default" ui-sref="viewCategoryDetails({id:category._id})">details
+            <span class="badge">{{category.contents_count}}</span></a>
+        </td>
+    </tr>
+</table>

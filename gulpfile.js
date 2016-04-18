@@ -9,7 +9,7 @@ gulp.task('bootstrap-copy', function() {
         .pipe(gulp.dest('app/vendor/css/'));
 
     gulp.src(boot_base + 'fonts/*')
-        .pipe(gulp.dest('app/fonts/'));
+        .pipe(gulp.dest('app/vendor/fonts/'));
 
 });
 
@@ -23,13 +23,13 @@ gulp.task('angular-concat', function() {
     vendor_ang.push(bower_base + 'angular/angular.js');
     vendor_ang.push(bower_base + 'angular-cookies/angular-cookies.js');
     vendor_ang.push(bower_base + 'angular-resource/angular-resource.js');
-    vendor_ang.push(bower_base + 'angular-ui-router/release/angular.ui.router.js');
+    vendor_ang.push(bower_base + 'angular-ui-router/release/angular-ui-router.js');
     vendor_ang.push(bower_base + 'bootstrap/dist/js/bootstrap.js');
 
-    gulp.src(vendor_ang)
-        .pipe(sourcemaps.init())
+    console.log(vendor_ang);
+
+    return gulp.src(vendor_ang)
         .pipe(concat('angular-bootstrap.js'))
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest('app/vendor/js'));
 });
 

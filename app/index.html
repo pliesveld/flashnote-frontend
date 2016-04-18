@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Categories Description</title>
+<title>FlashNote - Interactive FlashCards</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/vendor/bootstrap.css" rel="stylesheet">
-<link href="css/vendor/bootstrap-theme.css" rel="stylesheet">
+<link href="vendor/css/bootstrap.css" rel="stylesheet">
+<link href="vendor/css/bootstrap-theme.css" rel="stylesheet">
 <link href="css/app.css" rel="stylesheet">
 <style type="text/css">
 [ng\:cloak], [ng-cloak], .ng-cloak {
@@ -14,16 +14,69 @@
 </head>
 <body ng-app="flashnoteApp" ng-cloak class="ng-cloak">
 
-    <div ng-controller="navigation as nav" class="container demo-nav">
-        <ul class="nav nav-pills" role="tablist">
-            <li ng-class="{active:nav.tab('home')}"><a href="#/"><span class="glyphicon glyphicon-home"></span> home</a></li>
-            <li ng-show="!nav.authenticated()" ng-class="{active:nav.tab('LoginController')}"><a href="#/login">login</a></li>
-            <li ng-show="!nav.authenticated()" ng-class="{active:nav.tab('SignupController')}"><a href="#/sign-up">sign-up</a></li>
-            <li ng-show="nav.authenticated()"><a href="" ng-click="nav.logout()">logout</a></li>
-        </ul>
-    </div>
+    <nav ng-controller="navigation as nav" role="navigation" class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#/" class="navbar-brand">Flashnote</a>
+        </div>
+        <div id="navbarCollapse" ng-controller="navigation as nav" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active">
+                    <a ui-sref="home">
+                        <span class="hidden-xs glyphicon glyphicon-home"></span> home
+                    </a>
+                </li>
 
-    <div ng-view="view-frame" class="container"></div>
+                <li ui-sref-active="active">
+                    <a ui-sref="profile">
+                        <span class="hidden-xs glyphicon glyphicon-user"></span> profile 
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="construct">
+                        <span class="hidden-xs glyphicon glyphicon-pencil"></span> author
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="browse">
+                        <span class="hidden-xs glyphicon glyphicon-th"></span> categories 
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="search">
+                        <span class="hidden-xs glyphicon glyphicon-search"></span> search
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active" ng-show="!nav.authenticated()">
+                    <a ui-sref="login">login</a>
+                </li>
+
+                <li ui-sref-active="active" ng-show="!nav.authenticated()">
+                    <a ui-sref="signup">sign-up</a>
+                </li>
+
+                <li ui-sref-active="active" ng-show="nav.authenticated()">
+                    <a ui-sref="logout">logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    <div ui-view></div>
 
 
 
@@ -31,13 +84,18 @@
 
 <script src="app.js"></script>
 
+<!-- @FlashnoteApplicationFiles -->
+
 <script src="view.navigation/navigation.module.js"></script>
 <script src="view.navigation/navigation.controller.js"></script>
 <script src="view.navigation/signup-directive.js"></script>
 <script src="view.navigation/signup.controller.js"></script>
 <script src="view.navigation/login.controller.js"></script>
+<script src="view.navigation/welcome.controller.js"></script>
 
-<script src="view.home/home.js"></script>
+<script src="view.home/home.controller.js"></script>
+
+<script src="view.categories/categories.controller.js"></script>
 
 <script src="components/debug/log.http-interceptor.factory.js"></script>
 
@@ -50,6 +108,7 @@
 <script src="components/auth/auth.factory.js"></script>
 <script src="components/auth/authInjector.factory.js"></script>
 
+<!-- @EndFlashnoteApplicationFiles -->
 
 </body>
 </html>

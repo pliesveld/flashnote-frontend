@@ -107,7 +107,7 @@ angular.module('auth.factory', ['auth.session']).factory(
 
 					// Guard route changes and switch to login page if unauthenticated
                     /*
-					$rootScope.$on('$routeChangeStart', function() {
+					$rootScope.$on('$stateChangeStart', function() {
 						enter();
 					});*/
 
