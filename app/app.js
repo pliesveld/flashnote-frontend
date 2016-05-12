@@ -5,7 +5,10 @@ angular.module('flashnoteApp', [
     'flashnoteApp.resource',
     'flashnoteApp.view.nav',
     'flashnoteApp.view.home',
+    'flashnoteApp.view.author',
+    'flashnoteApp.view.profile',
     'flashnoteApp.view.categories',
+    'flashnoteApp.view.search',
 ])
     .config(
             
@@ -27,14 +30,6 @@ angular.module('flashnoteApp', [
                 templateUrl : 'view.navigation/signup.html',
                 controller : 'SignupCtrl',
                 controllerAs : 'controller'
-            })
-
-            .state('browse',
-            {
-                url : "/categories",
-                templateUrl: 'view.categories/categories-list.html',
-                controller: 'CategoryListCtrl',
-                controllerAs: 'controller'
             })
 
 

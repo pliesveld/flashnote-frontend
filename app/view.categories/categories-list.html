@@ -1,4 +1,5 @@
 <table class="table">
+    <div ui-view> </div>
     <tr>
         <td>
             <h3>categories</h3>
@@ -7,11 +8,14 @@
        <td></td>
     </tr>
     <tr ng-repeat="category in categories">
-        <td>{{category.name}}</td>
+        <td><a class="btn btn-default" ng-click="controller.viewCategory({id:category.id})">
+                {{category.name}}</a></td>
         <td>{{category.description}} {{category.count}}</td>
         <td>
-            <a class="btn btn-default" ui-sref="viewCategoryDetails({id:category._id})">details
-            <span class="badge">{{category.contents_count}}</span></a>
+            <div ng-show="category.child_categories">
+                <a class="btn btn-default" ng-click="controller.viewCategoryAsRoot({id:category.id})">
+                <span class="badge">{{category.child_categories.length}}</span></a>
+            </div>
         </td>
     </tr>
 </table>

@@ -1,0 +1,20 @@
+<h2>Playback Flashnote </h2>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button class="btn btn-primary btn-lg" ng-click="controller.prev()">prev</button>
+
+            <div class="pull-right">
+                <button class="btn btn-primary btn-lg" ng-click="controller.show()" ng-show="!controller.showAnswer">show</button>
+                <button class="btn btn-primary btn-lg" ng-click="controller.next()" ng-show="controller.showAnswer">next</button>
+            </div>
+        </div>
+
+
+        <div class="panel-body well" ng-show="!controller.showAnswer"><h2 class="playback-content playback-question">{{controller.question}}</h2></div>
+
+        <div class="panel-body well" ng-show="controller.showAnswer"><h2 class="playback-content playback-answer">{{controller.answer}}</h2></div>
+
+    </div>
+</div>
+

@@ -53,7 +53,6 @@ angular.module('auth.factory', ['auth.session']).factory(
                               function authenticationError(response) { $log.debug("auth error"); });
                 },
 
-
                 permissions : function(token, callback) {
 
                     var headers = token ? {
@@ -111,7 +110,15 @@ angular.module('auth.factory', ['auth.session']).factory(
 						enter();
 					});*/
 
-				}
+				},
+
+                username : function() {
+                    return session.username;
+                },
+                handle : function() {
+                    return session.handle;
+                },
+
 
 			};
 

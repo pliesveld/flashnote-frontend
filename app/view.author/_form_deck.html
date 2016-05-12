@@ -1,0 +1,76 @@
+<form role="form" ng-submit="controller.submit()">
+
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input type="text" disabled ng-model="controller.deck.description" class="form-control" id="title" placeholder="Description Here"/>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-2">
+            <label for="category" class="control-label">Category</label>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" disabled ng-model="controller.deck.category.name" class="form-control" id="title" placeholder="Description Here"/>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-10">
+            <div class="deck-container" ng-repeat="flashcard in controller.deck.flashcards track by $index">
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-xs" ng-click="controller.deck.flashcards.splice($index,1)">
+                        <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+                        X
+                    </button>
+                    {{flashcard.question.content}}
+                    {{flashcard.answer.content}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-sm-2"> 
+            <label for="content" class="control-label">Question:</label>
+        </div>
+        <div class="col-sm-10">
+            <textarea rows="6" id="content" name="content" class="form-control deck-content" ng-model="controller.currentFlashcard.question.content"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2"> 
+            <label for="content" class="control-label">Answer:</label>
+        </div>
+        <div class="col-sm-10">
+            <textarea rows="6" id="content" name="content" class="form-control deck-content" ng-model="controller.currentFlashcard.answer.content"></textarea>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-default" ng-click="controller.addFile()">Attach File</button>
+
+            <div class="form-group pull-right">
+                <button type="button" class="btn btn-default" ng-click="controller.addFlashcard()">Add Flashcard</button>
+                <button type="submit" class="btn btn-primary" ng-hide="controller.deck.flashcards.length == 0">Submit</button>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+

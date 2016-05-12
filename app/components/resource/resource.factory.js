@@ -8,7 +8,8 @@ angular.module('flashnoteApp.resource.factory', ['ngResource'])
             {
                 stripTrailingSlashes : true
             });
-    }).factory('Deck', function($resource) {
+    })
+    .factory('Deck', function($resource) {
             return $resource('http://localhost:9000/decks/:id', { id: '@id' }, {
                 update : {
                     method : 'PUT'
@@ -17,11 +18,12 @@ angular.module('flashnoteApp.resource.factory', ['ngResource'])
             {
                 stripTrailingSlashes : true
             });
-    }).factory('Category', function($resource) {
-            return $resource('http://localhost:9000/categories/:id', { id: '@id' }, {
+    })
+    .factory('Category', function($resource) {
+            return $resource('http://localhost:9000/categories/root/:id', { id: '@id' }, {
                 update : {
                     method : 'PUT'
-                }
+                },
             },
             {
                 stripTrailingSlashes : true

@@ -23,7 +23,7 @@ describe('flashnoteApp.view.nav module', function() {
       token : 'Super Secret JWT Token',
     });
 
-    var controller = $controller('LoginController', {
+    var controller = $controller('LoginCtrl', {
       $scope : $scope
     });
 

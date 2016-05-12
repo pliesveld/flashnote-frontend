@@ -1,3 +1,4 @@
+<div class="container">
 <div class="alert alert-danger" ng-show="controller.error">
 	There was a problem logging in. Please try again.
 </div>
@@ -15,5 +16,5 @@
     </div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<span>{{controller.response.token}}</span>
 <button type="button" class="btn btn-default" ng-show="controller.response.token" ng-click="controller.user()">Show User Details</button>
+</div>

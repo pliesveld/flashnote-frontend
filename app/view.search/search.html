@@ -1,0 +1,9 @@
+<div class="container">
+    <form name="searchForm" class="form-search" role="form" ng-submit="controller.search()" novalidate>
+        <div class="form-group">
+            <label class="control-label" for="mysearch">Search Website:</label>
+            <input type="search" class="form-control" id="mysearch" ng-model="controller.query">
+        </div>
+    </form>
+    <div ui-view></div>
+</div>

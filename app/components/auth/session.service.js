@@ -31,7 +31,7 @@ angular.module('auth.session', []).service('session',
                 self.valid = true;
                 self.authorities = user.authorities;
 
-                $log.debug("now authenticated");
+                $log.debug("now authenticated as ", self.handle);
             };
 
             self.invalidateSession = function sessionInvalidation() {

@@ -33,22 +33,26 @@
                 </li>
 
                 <li ui-sref-active="active">
-                    <a ui-sref="profile">
-                        <span class="hidden-xs glyphicon glyphicon-user"></span> profile 
-                    </a>
-                </li>
-
-                <li ui-sref-active="active">
-                    <a ui-sref="construct">
+                    <a ui-sref="author">
                         <span class="hidden-xs glyphicon glyphicon-pencil"></span> author
                     </a>
                 </li>
 
                 <li ui-sref-active="active">
-                    <a ui-sref="browse">
+                    <a ui-sref="categories">
                         <span class="hidden-xs glyphicon glyphicon-th"></span> categories 
                     </a>
                 </li>
+
+<!--
+                <li>
+                    <form role="search" class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search" class="form-control">
+                        </div>
+                    </form>
+                </li>
+-->
 
                 <li ui-sref-active="active">
                     <a ui-sref="search">
@@ -67,7 +71,15 @@
                 </li>
 
                 <li ui-sref-active="active" ng-show="nav.authenticated()">
-                    <a ui-sref="logout">logout</a>
+                    <a ui-sref="profile">
+                        <span class="hidden-xs glyphicon glyphicon-user"></span> {{nav.handle()}}
+                    </a>
+                </li>
+
+                <li class="divider" ng-show="nav.authenticated()"></li>
+
+                <li ui-sref-active="active" ng-show="nav.authenticated()">
+                    <a ng-click="nav.logout()">logout</a>
                 </li>
             </ul>
         </div>
@@ -76,7 +88,7 @@
 
 
 
-    <div ui-view></div>
+<div ui-view></div>
 
 
 
@@ -95,7 +107,15 @@
 
 <script src="view.home/home.controller.js"></script>
 
+<script src="view.profile/profile.controller.js"></script>
+
 <script src="view.categories/categories.controller.js"></script>
+
+<script src="view.search/search.controller.js"></script>
+
+<script src="view.author/author.controller.js"></script>
+<script src="view.author/questionbank.controller.js"></script>
+<script src="view.author/deck.controller.js"></script>
 
 <script src="components/debug/log.http-interceptor.factory.js"></script>
 
