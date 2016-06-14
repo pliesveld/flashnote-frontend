@@ -8,17 +8,17 @@ angular.module('flashnoteApp.view.author', ['ui.router', 'flashnoteApp.view.auth
             controllerAs: 'controller',
         })
         .state('author.questionbank', {
-            url : "/author/questionbank/create",
+            url : "/questionbank/create",
             templateUrl : 'view.author/questionbank-create.html',
             controller: 'QuestionBankCreateCtrl',
             controllerAs: 'controller',
         })   
         .state('author.deck', {
-            url : "/author/deck/create",
+            url : "/deck/create",
             templateUrl : 'view.author/deck-create.html',
             controller: 'DeckCreateCtrl',
             controllerAs: 'controller',
-        })
+        });
     })
     .controller('AuthorCtrl', function($state, $log) {
         var self = this;

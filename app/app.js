@@ -1,5 +1,6 @@
 angular.module('flashnoteApp', [
     'ui.router', 
+    'backend',
     'auth',
     'flashnoteApp.logInterceptor',
     'flashnoteApp.resource',
@@ -32,7 +33,6 @@ angular.module('flashnoteApp', [
                 controllerAs : 'controller'
             })
 
-
             .state('home',
             {
                 url : "/home",
@@ -53,12 +53,38 @@ angular.module('flashnoteApp', [
 
 
             $httpProvider.interceptors.push('authInjector');
-            $httpProvider.interceptors.push('logInterceptor');
+
     })
 
-    .run(function(auth) {
-        var auth_host = 'http://localhost:9000';
-        auth.init('/', auth_host + '/auth', auth_host + '/account/logoff', auth_host + '/user');
+
+    .run(function(backend, auth, $rootScope, $log) {
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            $log.debug(event, toState.name);
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            $log.debug('stateChangeSuccess', toState.name);
+        });
+
+
+        $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams) {
+            $log.error(event, toState.name);
+        });
+
+        $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+            $log.error(event, toState.name, error);
+        });
+
+        $rootScope.$on('$viewContentLoading', function(event, viewConfig) {
+            $log.debug(event, viewConfig);
+        });
+
+        $rootScope.$on('$viewContentLoaded', function(event) {
+            $log.debug(event);
+        });
+
+//        backend.baseURL = 'http://localhost:9000';
+        auth.init('/', '/auth', '/account/logoff', '/user');
     });
 
 

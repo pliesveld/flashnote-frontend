@@ -1,5 +1,5 @@
-angular.module('auth.session', []).service('session', 
-        function($log) 
+angular.module('auth.session', ['ngCookies']).service('session', 
+        function($log, $cookies) 
         {
             var self = this;
 
@@ -8,19 +8,20 @@ angular.module('auth.session', []).service('session',
                 self.valid = false;
                 self.rememberme = false;
                 self.authorities = [];
-            }
+            };
 
             self.reset();
 
-            self.saveSessionToken = function sessionSetJwtToken(token, permissions, rememberme)
-            {
+            self.saveSessionToken = function sessionSetJwtToken(token, permissions, rememberme) {
                 self.token = token;
-                self.rememberme;
+                self.rememberme = rememberme;
             };
 
             self.validateSession = function sessionValidation(user) {
-                if(user === undefined || user == null || !user.handle || !user.username || !user.authorities)
+                $log.debug("Validating user",user);
+                if(user === undefined || user === null || !user.handle || !user.username || !user.authorities)
                 {
+                    $log.warn("Invalid user response", JSON.stringify(user,null,"  "));
                     self.reset();
                     return;
 
@@ -31,12 +32,12 @@ angular.module('auth.session', []).service('session',
                 self.valid = true;
                 self.authorities = user.authorities;
 
-                $log.debug("now authenticated as ", self.handle);
+                $log.info("Successfully authenticated as", self.handle, "with", JSON.stringify(self.authorities));
             };
 
             self.invalidateSession = function sessionInvalidation() {
-                $log.debug("session invalidated");
+                $log.debug("Invalidating Session");
                 self.reset();
-            }
+            };
 
         });

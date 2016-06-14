@@ -1,15 +1,15 @@
 angular.module('auth.session-injector', []).factory(
-        'authInjector', ['session',
+        'authInjector', ['session', '$log',
 
-        function(session) {
+        function(session, $log) {
             var authInjector = {
 
                 request : function(config) {
                     if(session.valid) {
-                        console.log("authenticated, adding header");
+                        $log.debug("authenticated, adding header");
                         config.headers['X-AUTH-TOKEN'] = session.token;
                     } else {
-                        console.log("not authenticated, not adding header");
+                        $log.debug("not authenticated, not adding header");
                     }
 
                     return config;

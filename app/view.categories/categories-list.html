@@ -1,21 +1,7 @@
-<table class="table">
-    <div ui-view> </div>
-    <tr>
-        <td>
-            <h3>categories</h3>
-        </td>
-       <td></td>
-       <td></td>
-    </tr>
-    <tr ng-repeat="category in categories">
-        <td><a class="btn btn-default" ng-click="controller.viewCategory({id:category.id})">
-                {{category.name}}</a></td>
-        <td>{{category.description}} {{category.count}}</td>
-        <td>
-            <div ng-show="category.child_categories">
-                <a class="btn btn-default" ng-click="controller.viewCategoryAsRoot({id:category.id})">
-                <span class="badge">{{category.child_categories.length}}</span></a>
-            </div>
-        </td>
-    </tr>
-</table>
+<div ui-view></div>
+
+<div class="row category-content" ng-repeat="category in categories">
+    <div class="col-sm-3 col-lg-2"><a class="btn btn-default" ui-sref="categories.details({id:category.id})">{{category.name}}</a></div>
+    <div class="col-sm-12 col-lg-8"><span class="category-description">{{category.description}}</span></div>
+</div>
+

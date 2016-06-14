@@ -37,3 +37,16 @@
 .home-btn {
     margin-top: 5px;
 }
+
+.category-content {
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.category-description {
+    margin-top: 7px;
+    display: block;
+    font-size: 16px;
+}
+
+

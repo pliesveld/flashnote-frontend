@@ -1,7 +1,7 @@
 angular.module('auth.factory', ['auth.session']).factory(
 		'auth',
 
-		function($rootScope, $http, $location, $log, session) {
+		function($rootScope, $http, $location, $log, session, backend) {
 
 			enter = function() {
 				if ($location.path() != auth.loginPath) {
@@ -32,6 +32,8 @@ angular.module('auth.factory', ['auth.session']).factory(
                         password : credentials.password,
 					} : {};
 
+                    $log.debug("Authenticating", payload.username);
+
                     var rememberme = credentials.rememberme ? credentials.rememberme : false;
 
                     $http.post(auth.loginPath, JSON.stringify(payload))
@@ -40,20 +42,25 @@ angular.module('auth.factory', ['auth.session']).factory(
                                     if( response.data && response.data.token )
                                     {
                                         var token = response.data.token;
-                                        var permissions = auth.permissions(token, session.validateSession);
-
+                                        $log.debug("token", token);
+                                        auth.permissions(token, session.validateSession);
                                         session.saveSessionToken(token, rememberme);
 
 						                $location.path(auth.path);
                                     } else {
-                                        $log.debug("response did not have token property", response);
+                                        $log.debug("Response did not have token property", response);
+                                        session.invalidateSession();
                                     }
 
                                 },
-                              function authenticationError(response) { $log.debug("auth error"); });
+                              function authenticationError(response) { 
+                                  $log.debug("authentication error", response); 
+                                  session.invalidateSession();
+
+                              });
                 },
 
-                permissions : function(token, callback) {
+                permissions: function(token, callback) {
 
                     var headers = token ? {
                         'X-AUTH-TOKEN' : token
@@ -61,7 +68,7 @@ angular.module('auth.factory', ['auth.session']).factory(
 
 
 					$http.get(auth.userPath, {
-                        headers : headers
+                        headers: headers
 					}).success(function(data) {
 						if (data.username) {
 							auth.authenticated = true;
@@ -78,6 +85,7 @@ angular.module('auth.factory', ['auth.session']).factory(
 				},
 
 				clear : function() {
+                    $log.debug("Clearing authentication tokens");
     				$location.path(auth.homePath);
 					auth.authenticated = false;
                     session.invalidateSession();
@@ -91,10 +99,12 @@ angular.module('auth.factory', ['auth.session']).factory(
 
 				init : function(homePath, loginPath, logoutPath, userPath) {
 
-					auth.homePath = homePath;
-					auth.loginPath = loginPath;
-					auth.logoutPath = logoutPath;
-                    auth.userPath = userPath;
+                    $log.debug("auth init with base:", backend.baseURL);
+
+					auth.homePath = backend.baseURL + homePath;
+					auth.loginPath = backend.baseURL + loginPath;
+					auth.logoutPath = backend.baseURL + logoutPath;
+                    auth.userPath = backend.baseURL + userPath;
 
                     $log.debug("homePath", homePath);
 
@@ -115,6 +125,7 @@ angular.module('auth.factory', ['auth.session']).factory(
                 username : function() {
                     return session.username;
                 },
+
                 handle : function() {
                     return session.handle;
                 },

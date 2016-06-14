@@ -2,9 +2,9 @@ angular.module('flashnoteApp.view.author.deck', ['flashnoteApp.resource'])
     .controller("DeckCreateCtrl",
         function deckCreateController(Deck) {
             var self = this;
-            self.currentFlashcard = { question : { content : "" }, answer : { content : "" } };
+            self.currentFlashcard = { question: { content: "" }, answer: { content: "" } };
             self.deck = new Deck();
-            self.deck.category = { name : "TEST CATEGORY", id : 6 };
+            self.deck.category = { name: "TEST CATEGORY", id: 500 };
             self.deck.description = "TEST DESCRIPTION";
             self.deck.flashcards = [];
 
@@ -14,7 +14,7 @@ angular.module('flashnoteApp.view.author.deck', ['flashnoteApp.resource'])
 
             self.addFlashcard = function() {
                 self.deck.flashcards.push(self.currentFlashcard);
-                self.currentFlashcard = { question : { content : "" }, answer : { content : "" } };
+                self.currentFlashcard = { question: { content: "" }, answer: { content: "" } };
             };
 
 

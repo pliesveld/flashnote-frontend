@@ -1,31 +1,34 @@
-angular.module('flashnoteApp.resource.factory', ['ngResource'])
-    .factory('QuestionBank', function($resource) {
-            return $resource('http://localhost:9000/questionbanks/:id', { id: '@id' }, {
-                update : {
-                    method : 'PUT'
+angular.module('flashnoteApp.resource.factory', ['ngResource', 'backend'])
+    .factory('QuestionBank', function($resource, backend) {
+            return $resource(backend.baseURL + '/questionbanks/:id', { id: '@id' }, {
+                update: {
+                    method: 'PUT'
                 }
             }, 
             {
-                stripTrailingSlashes : true
+                stripTrailingSlashes: true
             });
     })
-    .factory('Deck', function($resource) {
-            return $resource('http://localhost:9000/decks/:id', { id: '@id' }, {
-                update : {
-                    method : 'PUT'
-                }
+    .factory('Deck', function($resource, backend) {
+            return $resource(backend.baseURL + '/decks/:id', { id: '@id' }, {
+                update: {
+                    method: 'PUT'
+                },
+                query: {
+                    isArray: false,
+                },
             }, 
             {
-                stripTrailingSlashes : true
+                stripTrailingSlashes: true
             });
     })
-    .factory('Category', function($resource) {
-            return $resource('http://localhost:9000/categories/root/:id', { id: '@id' }, {
-                update : {
-                    method : 'PUT'
+    .factory('Category', function($resource, backend) {
+            return $resource(backend.baseURL + '/categories/root/:id', { id: '@id' }, {
+                update: {
+                    method: 'PUT'
                 },
             },
             {
-                stripTrailingSlashes : true
-            })
+                stripTrailingSlashes: true
+            });
     });
