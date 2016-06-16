@@ -1,7 +1,7 @@
 angular.module('auth.factory', ['auth.session']).factory(
 		'auth',
 
-		function($rootScope, $http, $location, $log, session, backend) {
+		function($rootScope, $http, $location, $log, session, API_ENDPOINT) {
 
 			enter = function() {
 				if ($location.path() != auth.loginPath) {
@@ -99,12 +99,12 @@ angular.module('auth.factory', ['auth.session']).factory(
 
 				init : function(homePath, loginPath, logoutPath, userPath) {
 
-                    $log.debug("auth init with base:", backend.baseURL);
+                    $log.debug("auth init with base:", API_ENDPOINT);
 
-					auth.homePath = backend.baseURL + homePath;
-					auth.loginPath = backend.baseURL + loginPath;
-					auth.logoutPath = backend.baseURL + logoutPath;
-                    auth.userPath = backend.baseURL + userPath;
+					auth.homePath = API_ENDPOINT + homePath;
+					auth.loginPath = API_ENDPOINT + loginPath;
+					auth.logoutPath = API_ENDPOINT + logoutPath;
+                    auth.userPath = API_ENDPOINT + userPath;
 
                     $log.debug("homePath", homePath);
 

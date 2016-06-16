@@ -1,6 +1,6 @@
-angular.module('flashnoteApp.resource.factory', ['ngResource', 'backend'])
-    .factory('QuestionBank', function($resource, backend) {
-            return $resource(backend.baseURL + '/questionbanks/:id', { id: '@id' }, {
+angular.module('flashnoteApp.resource.factory', ['ngResource'])
+    .factory('QuestionBank', function($resource, API_ENDPOINT) {
+            return $resource(API_ENDPOINT + '/questionbanks/:id', { id: '@id' }, {
                 update: {
                     method: 'PUT'
                 }
@@ -9,8 +9,8 @@ angular.module('flashnoteApp.resource.factory', ['ngResource', 'backend'])
                 stripTrailingSlashes: true
             });
     })
-    .factory('Deck', function($resource, backend) {
-            return $resource(backend.baseURL + '/decks/:id', { id: '@id' }, {
+    .factory('Deck', function($resource, API_ENDPOINT) {
+            return $resource(API_ENDPOINT + '/decks/:id', { id: '@id' }, {
                 update: {
                     method: 'PUT'
                 },
@@ -22,8 +22,8 @@ angular.module('flashnoteApp.resource.factory', ['ngResource', 'backend'])
                 stripTrailingSlashes: true
             });
     })
-    .factory('Category', function($resource, backend) {
-            return $resource(backend.baseURL + '/categories/root/:id', { id: '@id' }, {
+    .factory('Category', function($resource, API_ENDPOINT) {
+            return $resource(API_ENDPOINT + '/categories/root/:id', { id: '@id' }, {
                 update: {
                     method: 'PUT'
                 },

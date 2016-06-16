@@ -1,5 +1,5 @@
-angular.module('auth.session', ['ngCookies']).service('session', 
-        function($log, $cookies) 
+angular.module('auth.session', []).service('session', 
+        function($log)
         {
             var self = this;
 

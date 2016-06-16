@@ -1,6 +1,5 @@
 angular.module('flashnoteApp', [
     'ui.router', 
-    'backend',
     'auth',
     'flashnoteApp.logInterceptor',
     'flashnoteApp.resource',
@@ -54,10 +53,10 @@ angular.module('flashnoteApp', [
 
             $httpProvider.interceptors.push('authInjector');
 
-    })
+    }).value('API_ENDPOINT', 'http://lalmec.no-ip.info:9000')
 
 
-    .run(function(backend, auth, $rootScope, $log) {
+    .run(function(auth, $rootScope, $log) {
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $log.debug(event, toState.name);
         });
@@ -83,7 +82,6 @@ angular.module('flashnoteApp', [
             $log.debug(event);
         });
 
-//        backend.baseURL = 'http://localhost:9000';
         auth.init('/', '/auth', '/account/logoff', '/user');
     });
 
