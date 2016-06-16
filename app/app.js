@@ -1,7 +1,7 @@
 angular.module('flashnoteApp', [
     'ui.router', 
-    'auth',
-    'flashnoteApp.logInterceptor',
+    'flashnoteApp.auth',
+    'flashnoteApp.debug.logInterceptor',
     'flashnoteApp.resource',
     'flashnoteApp.view.nav',
     'flashnoteApp.view.home',

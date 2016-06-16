@@ -1,4 +1,4 @@
-angular.module('flashnoteApp.logInterceptor',[]).factory('logInterceptor', ['$log', function($log) {
+angular.module('flashnoteApp.debug.logInterceptor',[]).factory('logInterceptor', ['$log', function($log) {
     $log.debug('$log is here to show you that this is a regular factory with injection');
 
         var logInterceptor = {

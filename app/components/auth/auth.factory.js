@@ -1,4 +1,4 @@
-angular.module('auth.factory', ['auth.session']).factory(
+angular.module('flashnoteApp.auth.factory', ['flashnoteApp.auth.session']).factory(
 		'auth',
 
 		function($rootScope, $http, $location, $log, session, API_ENDPOINT) {

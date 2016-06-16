@@ -1,4 +1,4 @@
-angular.module('auth.session', []).service('session', 
+angular.module('flashnoteApp.auth.session', []).service('session', 
         function($log)
         {
             var self = this;

@@ -1,4 +1,4 @@
-angular.module('flashnoteApp.controller.navigation', ['ui.router', 'auth'])
+angular.module('flashnoteApp.controller.navigation', ['ui.router', 'flashnoteApp.auth'])
     .controller('navigation', function navigationController($state, auth) {
 			var self = this;
 

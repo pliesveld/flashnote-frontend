@@ -10,7 +10,7 @@ angular.module('flashnoteApp.view.home', ['ui.router'])
             });
     }])
 
-    .controller('HomeCtrl', function HomeController($state, $http) {
+    .controller('HomeCtrl', function homeController($state, $http) {
         var self = this;
 
         self.user = "Student";

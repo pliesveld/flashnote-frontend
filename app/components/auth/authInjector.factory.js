@@ -1,4 +1,4 @@
-angular.module('auth.session-injector', []).factory(
+angular.module('flashnoteApp.auth.session-injector', []).factory(
         'authInjector', ['session', '$log',
 
         function(session, $log) {

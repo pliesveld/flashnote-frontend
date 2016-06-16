@@ -1,4 +1,4 @@
-angular.module('flashnoteApp.controller.login', ['ui.router', 'auth'])
+angular.module('flashnoteApp.controller.login', ['ui.router', 'flashnoteApp.auth'])
     .controller('LoginCtrl',
 		function LoginController($state, $http, $log, auth) {
 			var self = this;
