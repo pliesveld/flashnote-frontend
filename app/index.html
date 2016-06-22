@@ -14,7 +14,7 @@
 </head>
 <body ng-app="flashnoteApp" ng-cloak class="ng-cloak">
 
-    <nav ng-controller="navigation as nav" role="navigation" class="navbar navbar-default">
+    <nav ng-controller="NavigationCtrl as nav" role="navigation" class="navbar navbar-default">
         <div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                 <span class="sr-only">Toggle navigation</span>
@@ -24,10 +24,10 @@
             </button>
             <a href="#/" class="navbar-brand">Flashnote</a>
         </div>
-        <div id="navbarCollapse" ng-controller="navigation as nav" class="collapse navbar-collapse">
+        <div id="navbarCollapse" ng-controller="NavigationCtrl as nav" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active">
-                    <a ui-sref="home">
+                    <a ui-sref="profile.home">
                         <span class="hidden-xs glyphicon glyphicon-home"></span> home
                     </a>
                 </li>
@@ -71,7 +71,7 @@
                 </li>
 
                 <li ui-sref-active="active" ng-show="nav.authenticated()">
-                    <a ui-sref="profile">
+                    <a ui-sref="profile.details">
                         <span class="hidden-xs glyphicon glyphicon-user"></span> {{nav.handle()}}
                     </a>
                 </li>
@@ -93,44 +93,10 @@
 
 
 <script src="vendor/js/angular-bootstrap.js"></script>
+<script src="vendor/js/holder.js"></script>
 
-<script src="app.js"></script>
+<script src="js/frontend.js"></script>
 
-<!-- @FlashnoteApplicationFiles -->
-
-<!-- @StartFlashnoteApplicationFiles -->
-
-<script src="view.navigation/navigation.module.js"></script>
-<script src="view.navigation/navigation.controller.js"></script>
-<script src="view.navigation/signup-directive.js"></script>
-<script src="view.navigation/signup.controller.js"></script>
-<script src="view.navigation/login.controller.js"></script>
-<script src="view.navigation/welcome.controller.js"></script>
-
-<script src="view.home/home.controller.js"></script>
-
-<script src="view.profile/profile.controller.js"></script>
-
-<script src="view.categories/categories.controller.js"></script>
-
-<script src="view.search/search.controller.js"></script>
-
-<script src="view.author/author.controller.js"></script>
-<script src="view.author/questionbank.controller.js"></script>
-<script src="view.author/deck.controller.js"></script>
-
-<script src="components/debug/log.http-interceptor.factory.js"></script>
-
-<script src="components/resource/resource.module.js"></script>
-<script src="components/resource/resource.controller.js"></script>
-<script src="components/resource/resource.factory.js"></script>
-
-<script src="components/auth/session.service.js"></script>
-<script src="components/auth/auth.module.js"></script>
-<script src="components/auth/auth.factory.js"></script>
-<script src="components/auth/authInjector.factory.js"></script>
-
-<!-- @EndFlashnoteApplicationFiles -->
 
 </body>
 </html>

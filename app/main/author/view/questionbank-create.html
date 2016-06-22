@@ -1,0 +1,53 @@
+<form role="form" ng-submit="controller.submit()">
+
+    <div class="form-group">
+        <div class="col-sm-2">
+            <label for="description" class="control-label">Description</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" disabled ng-model="controller.questionBank.description" class="form-control" id="title" placeholder="Description Here"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2">
+            <label for="category" class="control-label">Category</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" disabled ng-model="controller.questionBank.category.name" class="form-control" id="category" placeholder="Select Category"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10">
+            <div class="questionbank-container" ng-repeat="question in controller.questionBank.questions track by $index">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-xs" ng-click="controller.questionBank.questions.splice($index,1)">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                    {{question.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4"> 
+            <label for="content" class="control-label">Question:</label>
+        </div>
+        <div class="col-sm-12">
+            <textarea tabindex="1" rows="15" ng-model="controller.currentQuestion.content" id="content" name="content" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-default" ng-click="controller.addFile()">Attach File</button>
+
+            <div class="form-group pull-right">
+                <button tabindex="2" type="button" class="btn btn-default" ng-click="controller.addQuestion()">Add Question</button>
+                <button tabindex="3" type="submit" class="btn btn-primary" ng-hide="controller.questionBank.questions.length == 0">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -13,7 +13,7 @@ describe('flashnoteApp.view.nav module', function() {
     })
 
     it("loads navigation controller", function() {
-        var controller = $controller('navigation');
+        var controller = $controller('NavigationCtrl');
     })
 
     it("says Hello Test when controller loads", function() {

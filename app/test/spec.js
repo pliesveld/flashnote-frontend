@@ -1,6 +1,6 @@
-describe('flashnoteApp.view.nav module', function() {
-    beforeEach(module('flashnoteApp.view.nav'));
-    beforeEach(module('flashnoteApp.view.home'));
+describe('flashnoteApp.navigation module', function() {
+    beforeEach(module('flashnoteApp.navigation'));
+
     var $controller;
 
     beforeEach(inject(function($injector) {

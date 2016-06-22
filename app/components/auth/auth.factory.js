@@ -1,7 +1,5 @@
-angular.module('flashnoteApp.auth.factory', ['flashnoteApp.auth.session']).factory(
-		'auth',
-
-		function($rootScope, $http, $location, $log, session, API_ENDPOINT) {
+angular.module('flashnoteApp.auth.factories', ['flashnoteApp.auth.services'])
+  .factory('auth', function($rootScope, $http, $location, $log, session, API_ENDPOINT) {
 
 			enter = function() {
 				if ($location.path() != auth.loginPath) {
@@ -19,77 +17,77 @@ angular.module('flashnoteApp.auth.factory', ['flashnoteApp.auth.session']).facto
 				homePath : '/',
 				loginPath : '/login',
 				logoutPath : '/logout',
-                userPath : '/user',
+        userPath : '/user',
 				path : $location.path(),
 
 				authenticate : function(credentials, callback) {
 
-                    credentials.username = 'student@example.com';
-                    credentials.password = 'password';
+          credentials.username = 'student@example.com';
+          credentials.password = 'password';
 
 					var payload = credentials && credentials.username ? {
-                        username : credentials.username,
-                        password : credentials.password,
+            username : credentials.username,
+            password : credentials.password,
 					} : {};
 
-                    $log.debug("Authenticating", payload.username);
+          $log.debug("Authenticating", payload.username);
 
-                    var rememberme = credentials.rememberme ? credentials.rememberme : false;
+          var rememberme = credentials.rememberme ? credentials.rememberme : false;
 
-                    $http.post(auth.loginPath, JSON.stringify(payload))
-                        .then(function authenticationSuccess(response) 
-                                { 
-                                    if( response.data && response.data.token )
-                                    {
-                                        var token = response.data.token;
-                                        $log.debug("token", token);
-                                        auth.permissions(token, session.validateSession);
-                                        session.saveSessionToken(token, rememberme);
+          $http.post(auth.loginPath, JSON.stringify(payload))
+            .then(function authenticationSuccess(response) 
+                { 
+                  if( response.data && response.data.token )
+                  {
+                    var token = response.data.token;
+                    $log.debug("token", token);
+                    auth.permissions(token, session.validateSession);
+                    session.saveSessionToken(token, rememberme);
 
-						                $location.path(auth.path);
-                                    } else {
-                                        $log.debug("Response did not have token property", response);
-                                        session.invalidateSession();
-                                    }
+						        $location.path(auth.path);
+                  } else {
+                    $log.debug("Response did not have token property", response);
+                    session.invalidateSession();
+                  }
 
-                                },
-                              function authenticationError(response) { 
-                                  $log.debug("authentication error", response); 
-                                  session.invalidateSession();
-
-                              });
                 },
+                function authenticationError(response) { 
+                  $log.debug("authentication error", response); 
+                  session.invalidateSession();
 
-                permissions: function(token, callback) {
+                });
+        },
 
-                    var headers = token ? {
-                        'X-AUTH-TOKEN' : token
-                    } : {};
+        permissions: function(token, callback) {
+
+          var headers = token ? {
+            'X-AUTH-TOKEN' : token
+          } : {};
 
 
 					$http.get(auth.userPath, {
-                        headers: headers
+            headers: headers
 					}).success(function(data) {
 						if (data.username) {
 							auth.authenticated = true;
-                            callback && callback(data);
+              callback && callback(data);
 						} else {
 							auth.authenticated = false;
-                            callback && callback(null);
+              callback && callback(null);
 						}
 					}).error(function() {
 						auth.authenticated = false;
-                        callback && callback(null);
+            callback && callback(null);
 					});
 
 				},
 
 				clear : function() {
-                    $log.debug("Clearing authentication tokens");
-    				$location.path(auth.homePath);
+          $log.debug("Clearing authentication tokens");
+  				$location.path(auth.homePath);
 					auth.authenticated = false;
-                    session.invalidateSession();
-                    /*
+          session.invalidateSession();
+          /*
 					$http.post(auth.logoutPath, {}).success(function() {
 						$log.debug("Logout succeeded");
 					}).error(function(data) {
@@ -99,14 +97,14 @@ angular.module('flashnoteApp.auth.factory', ['flashnoteApp.auth.session']).facto
 
 				init : function(homePath, loginPath, logoutPath, userPath) {
 
-                    $log.debug("auth init with base:", API_ENDPOINT);
+          $log.debug("auth init with base:", API_ENDPOINT);
 
 					auth.homePath = API_ENDPOINT + homePath;
 					auth.loginPath = API_ENDPOINT + loginPath;
 					auth.logoutPath = API_ENDPOINT + logoutPath;
-                    auth.userPath = API_ENDPOINT + userPath;
+          auth.userPath = API_ENDPOINT + userPath;
 
-                    $log.debug("homePath", homePath);
+          $log.debug("homePath", homePath);
 
 					auth.authenticate({}, function(authenticated) {
 						if (authenticated) {
@@ -115,24 +113,45 @@ angular.module('flashnoteApp.auth.factory', ['flashnoteApp.auth.session']).facto
 					});
 
 					// Guard route changes and switch to login page if unauthenticated
-                    /*
+          /*
 					$rootScope.$on('$stateChangeStart', function() {
 						enter();
 					});*/
 
 				},
 
-                username : function() {
-                    return session.username;
-                },
+        username : function() {
+          return session.username;
+        },
 
-                handle : function() {
-                    return session.handle;
-                },
+        handle : function() {
+          return session.handle;
+        },
 
 
 			};
 
 			return auth;
 
-		});
+		})
+  .factory(
+    'authInjector', ['session', '$log',
+
+    function(session, $log) {
+      var authInjector = {
+
+        request : function(config) {
+          if(session.valid) {
+            $log.debug("authenticated, adding header");
+            config.headers['X-AUTH-TOKEN'] = session.token;
+          } else {
+            $log.debug("not authenticated, not adding header");
+          }
+
+          return config;
+        }
+      };
+
+      return authInjector;
+    }]);
+

@@ -1,0 +1,144 @@
+/**
+    Examples demonstrating SCSS constructs
+*/
+
+// @import 'reusable';
+@import 'reusable';
+
+// @import 'mixins';
+@import 'mixins';
+
+/**
+    func percentage( fraction ) -> computed
+
+  .testing {
+    width: percentage(5/7);
+  }
+*/
+.testing {
+  width: percentage(5/7);
+}
+
+/**
+    Nesting of components; expands css selectors based on scope
+
+  nav {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li { display: inline-block; }
+
+    a {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+    }
+  }
+*/
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+
+
+/**
+  The border-radius @mixin adds vendor tags to the border-radius property
+
+  .box { @include border-radius(10px); }
+*/
+.box { @include border-radius(10px); }
+
+/**
+  The @extend constructs lets you share a set of CSS properties from one
+  selector to another.  This example takes the CSS properties in .message
+  and applies them to .success, .warning, and .error
+  
+	.message {
+		border: 1px solid #ccc;
+		padding: 10px;
+		color: #333;
+	}
+
+	.success {
+		@extend .message;
+		border-color: green;
+	}
+
+	.error {
+		@extend .message;
+		border-color: red;
+	}
+
+	.warning {
+		@extend .message;
+		border-color: yellow;
+	}
+*/
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.error {
+  @extend .message;
+  border-color: red;
+}
+
+.warning {
+  @extend .message;
+  border-color: yellow;
+}
+
+/**
+  The variable construct starts with the $
+  and can be used with standard math operators like +, -, *, /, and %
+
+  $article-width: 600px;
+  $aside-width: 300px;
+  $page-width: 960px;
+
+  article[role="main"] {
+    float: left;
+    width: $article-width / $page-width * 100%;
+  }
+
+  aside[role="complementary"] {
+    float: right;
+    width: $aside-width / $page-width * 100%;
+  }
+*/
+
+$article-width: 600px;
+$aside-width: 300px;
+$page-width: 960px;
+
+article[role="main"] {
+	float: left;
+	width: $article-width / $page-width * 100%;
+}
+
+aside[role="complementary"] {
+	float: right;
+	width: $aside-width / $page-width * 100%;
+}
+
