@@ -7,10 +7,13 @@
     "plugins": {
         "requirejs": {},
         "angular": {},
-        "node": {}
+        "node": {},
+        "jasmine": {},
+        "jasminematchers": {}
     },
     "loadEagerly": [
         "app/vendor/js/**/*.js",
         "app/js/**/*.js"
+
     ]
 }

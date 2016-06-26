@@ -38,7 +38,8 @@
 
     <tr ng-repeat="bank in banks.content">
         <td>{{bank.id}}</td>
-        <td>{{bank.description}}</td>
+        <td><a ui-sref="bank.details({id: bank.id})">{{bank.description}}</a></td>
+        <td><a class='btn btn-primary btn-sm' ui-sref="playback.bank({id: bank.id})">study</a></td>
     </tr>
 </table>
 

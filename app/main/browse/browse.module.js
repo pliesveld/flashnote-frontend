@@ -1,1 +1,1 @@
-angular.module('flashnoteApp.browse', ['ui.router', 'flashnoteApp.browse.controllers'])
+angular.module('flashnoteApp.browse', ['ui.router', 'flashnoteApp.browse.controllers', 'flashnoteApp.browse.directives'])

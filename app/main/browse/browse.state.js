@@ -1,27 +1,27 @@
 angular.module('flashnoteApp.browse')
   .config(function($stateProvider) {
     $stateProvider
-    .state('categories',
-    {
-      url : "/categories",
-      templateUrl: 'main/browse/view/categories-root.html',
-      controller: 'CategoryRootCtrl',
-      controllerAs: 'controller'
-    })
-    .state('categories.list',
-    {
-      url : "/list",
-      templateUrl: 'main/browse/view/categories-list.html',
-      controller: 'CategoryListCtrl',
-    })
-    .state('categories.details', 
-    {
-      url : "/:id",
-      templateUrl: 'main/browse/view/categories-detail.html',
-      controller: 'CategoryDetailsCtrl',
-      controllerAs: 'controller',
-      params : { id : null },
-    });
+      .state('categories',
+      {
+        url : "/categories",
+        templateUrl: 'main/browse/view/categories-root.html',
+        controller: 'CategoryRootCtrl',
+        controllerAs: 'controller'
+      })
+      .state('categories.list',
+      {
+        url : "/list",
+        templateUrl: 'main/browse/view/categories-list.html',
+        controller: 'CategoryListCtrl',
+      })
+      .state('categories.details',
+      {
+        url : "/:id",
+        templateUrl: 'main/browse/view/categories-detail.html',
+        controller: 'CategoryDetailsCtrl',
+        controllerAs: 'controller',
+        params: {id: null},
+      });
   })
   .config(function($stateProvider) {
     $stateProvider
@@ -45,4 +45,19 @@ angular.module('flashnoteApp.browse')
         }
       });
   })
-
+  .config(function($stateProvider) {
+    $stateProvider
+      .state('bank',
+      {
+        url: '/bank',
+        template: '<div ui-view></div>'
+      })
+      .state('bank.details',
+      {
+        url : "/:id",
+        templateUrl: 'main/browse/view/bank-detail.html',
+        controller: 'BankDetailsCtrl',
+        controllerAs: 'controller',
+        params : { id : null },
+      })
+  })

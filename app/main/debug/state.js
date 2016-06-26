@@ -24,6 +24,16 @@ angular.module('flashnoteApp.debug')
         params: {reload: true}
       })
 
+      .state('debug.cache', {
+        url: '/cache',
+        templateUrl : 'main/debug/view/cache.html',
+        controller: 'CacheController',
+        controllerAs: 'controller',
+        params: {reload: true},
+      })
+
+
+
       ;
 })
 

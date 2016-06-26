@@ -1,4 +1,11 @@
 angular.module('flashnoteApp.resource.services', ['ngResource'])
+  .factory('CategoryCache', function($cacheFactory, $log) {
+    var cache = $cacheFactory('categoryCache', {options: 15});
+    cache.debug = function() {
+      $log.debug(cache.info());
+    };
+    return cache;
+  })
   .factory('QuestionBank', function($resource, API_ENDPOINT) {
       return $resource(API_ENDPOINT + '/questionbanks/:id', { id: '@id' }, {
         update: {

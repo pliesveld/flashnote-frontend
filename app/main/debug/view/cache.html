@@ -1,0 +1,21 @@
+<div>
+  <input ng-model="newCacheKey" placeholder="Key">
+  <input ng-model="newCacheValue" placeholder="Value">
+  <button ng-click="controller.put(newCacheKey, newCacheValue)">Cache</button>
+
+  <p ng-if="controller.keys.length">Cached Values</p>
+  <div ng-repeat="key in controller.keys">
+    <span ng-bind="key"></span>
+    <span>: </span>
+    <b ng-bind="controller.cache.get(key)"></b>
+  </div>
+
+  <p>Cache Info</p>
+  <div ng-repeat="(key, value) in controller.cache.info()">
+    <span ng-bind="key"></span>
+    <span>: </span>
+    <b ng-bind="value"></b>
+  </div>
+
+	<a ng-click="controller.debug()">log to console</a>
+</div>

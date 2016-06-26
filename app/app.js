@@ -5,6 +5,7 @@ angular.module('flashnoteApp', [
   'flashnoteApp.navigation',
   'flashnoteApp.auth',
   'flashnoteApp.profile',
+  'flashnoteApp.playback',
   'flashnoteApp.author',
   'flashnoteApp.browse'
 ])

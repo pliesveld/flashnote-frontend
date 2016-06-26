@@ -28,4 +28,13 @@ angular.module('flashnoteApp.browse.controllers', ['ui.router'])
     self.search_query = $state.params.search_query;
     self.search_results = $state.params.search_results;
   })
+  .controller('BankDetailsCtrl', function($log, $scope, $state, $stateParams, QuestionBank) {
+    var self = this;
+
+    self.id = $state.params.id;
+    self.bank = QuestionBank.get({'id': self.id});
+
+  })
+
+
 ;
