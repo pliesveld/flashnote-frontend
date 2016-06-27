@@ -61,3 +61,6 @@ angular.module('flashnoteApp.navigation.controllers', ['ui.router', 'flashnoteAp
     .controller('WelcomeCtrl', function($state) {
 			var self = this;
     })
+    .controller('WelcomeDetailsCtrl', function($state) {
+			var self = this;
+    })

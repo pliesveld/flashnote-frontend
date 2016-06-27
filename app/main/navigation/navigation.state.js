@@ -19,7 +19,15 @@ angular.module('flashnoteApp.navigation')
         templateUrl: 'main/navigation/view/welcome.html',
         controller: 'WelcomeCtrl',
         controllerAs: 'controller'
+      })
+      .state('about',
+      {
+        url : "/about",
+        templateUrl: 'main/navigation/view/about.html',
+        controller: 'WelcomeDetailsCtrl',
+        controllerAs: 'controller'
       });
+
 
   });
 
