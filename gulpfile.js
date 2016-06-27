@@ -18,7 +18,7 @@ gulp.task('bootstrap-copy', function() {
     .pipe(gulp.dest('app/vendor/fonts/'));
 });
 
-gulp.task('angular-concat', function() {
+gulp.task('angular-concat', ['vendor-dev'], function() {
   var bower_base = 'app/bower_components/';
 
   var vendor_ang = [];
@@ -61,8 +61,9 @@ gulp.task('sass', function() {
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'app'
+      baseDir: 'app',
     },
+    port: 8000,
   });
 });
 
