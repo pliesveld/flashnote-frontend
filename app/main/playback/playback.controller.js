@@ -11,27 +11,29 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
     self.questionbankId = questionbank.id;
 
     self.currentIdx = 0;
-    self.maxIdx = questionbank.questions.length;
+    self.maxIdx = questionbank.questions.length - 1;
     self.questions = questionbank.questions;
+    console.log(self.questions);
 
-
-    self.test = [1,2,3,5];
-    //$scope.test = [1,2,3,5];
- 
+    self.question = function() {
+      return self.questions[self.currentIdx].content;
+    };
 
     self.next = function() { 
       console.log('next!');
       if(self.currentIdx < self.maxIdx) {
         self.currentIdx += 1;
       }
-      
     };
 
     self.prev = function() { 
-      console.log('prev!');
+      if(self.currentIdx > 0) {
+        self.currentIdx -= 1;
+      }
     };
 
-      self.showAnswer = false;
+    self.test = self.questions;
+
   })
   .controller("PlaybackDeckCtrl", function($stateParams, Deck) {
     var self = this;
