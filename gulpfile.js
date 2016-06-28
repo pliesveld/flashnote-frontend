@@ -40,16 +40,7 @@ gulp.task('angular-concat', function() {
     .pipe(gulp.dest('app/vendor/js'));
 });
 
-gulp.task('vendor-dev', ['bootstrap-copy', 'angular-concat'], function() {
-  var bower_base = 'app/bower_components/';
-
-  var vendor_ang = [];
-  vendor_ang.push(bower_base + 'holderjs/holder.js');
-
-  return gulp.src(vendor_ang)
-    .pipe(concat('holder.js'))
-    .pipe(gulp.dest('app/vendor/js'));
-});
+gulp.task('vendor-dev', ['bootstrap-copy', 'angular-concat'], function() {});
 
 
 gulp.task('sass', function() {
@@ -91,31 +82,31 @@ gulp.task('js', function() {
     'app/main/**/*.js'])
   .pipe(debug())
   .pipe(concat('frontend.js'))
-  .pipe(gulp.dest('app/js'))
+  .pipe(gulp.dest('app/js'));
 });
 
 
 
 gulp.task('vendor-copy-src', function() {
   return gulp.src('app/vendor/**/*').pipe(gulp.dest('build'));
-})
+});
 
 gulp.task('src-vendor-copy', function() {
   gulp.src(['app/vendor/**/*.js'])
   .pipe(debug())
-  .pipe(gulp.dest('build/js'))
+  .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('src-html-copy', function() {
   gulp.src(['app/**/*.html'])
   .pipe(debug())
-  .pipe(gulp.dest('build'))
+  .pipe(gulp.dest('build'));
 });
 
 gulp.task('src-css-copy', function() {
   gulp.src(['app/css/**/*.css'])
   .pipe(debug())
-  .pipe(gulp.dest('build/css'))
+  .pipe(gulp.dest('build/css'));
 });
 
 

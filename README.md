@@ -8,9 +8,7 @@ $ npm install
 
 $ npm install --global gulp-cli
 
-$ gulp bootstrap-copy
-
-$ gulp angular-concat
+$ gulp vendor-dev
 
 ## Serve
 
