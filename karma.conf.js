@@ -9,7 +9,10 @@ module.exports = function(config){
       'app/bower_components/bootstrap/dist/js/bootstrap.js',
       'app/bower_components/angular-resource/angular-resource.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'app/bower_components/holderjs/holder.js',
+      'app/bower_components/angular-holderjs/src/holder.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+
       'app/app.js',
       'app/main/**/*.js',
       'app/components/**/*.js',

@@ -29,6 +29,9 @@ gulp.task('angular-concat', function() {
   vendor_ang.push(bower_base + 'angular-resource/angular-resource.js');
   vendor_ang.push(bower_base + 'angular-ui-router/release/angular-ui-router.js');
   vendor_ang.push(bower_base + 'bootstrap/dist/js/bootstrap.js');
+  vendor_ang.push(bower_base + 'holderjs/holder.js');
+  vendor_ang.push(bower_base + 'angular-holderjs/src/holder.js');
+
 
   console.log(vendor_ang);
 
