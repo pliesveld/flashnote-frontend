@@ -60,4 +60,18 @@ angular.module('flashnoteApp.browse')
         controllerAs: 'controller',
         params : { id : null },
       })
-  })
+      .state('deck',
+      {
+        url: '/deck',
+        template: '<div ui-view></div>'
+      })
+      .state('deck.details',
+      {
+        url : "/:id",
+        templateUrl: 'main/browse/view/deck-detail.html',
+        controller: 'DeckDetailsCtrl',
+        controllerAs: 'controller',
+        params : { id : null },
+      });
+
+  });

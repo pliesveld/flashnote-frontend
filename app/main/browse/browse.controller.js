@@ -35,6 +35,13 @@ angular.module('flashnoteApp.browse.controllers', ['ui.router'])
     self.bank = QuestionBank.get({'id': self.id});
 
   })
+  .controller('DeckDetailsCtrl', function($log, $scope, $state, $stateParams, Deck) {
+    var self = this;
+
+    self.id = $state.params.id;
+    self.deck = Deck.get({'id': self.id});
+  })
+
 
 
 ;

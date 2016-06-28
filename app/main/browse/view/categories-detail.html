@@ -2,45 +2,46 @@
 <h4>{{id}}</h4>
 
 <table class="table" ng-show="categories.length > 0">
-    <tr>
-        <td>
-            <h3>Sub Categories</h3>
-        </td>
-       <td></td>
-    </tr>
-    <tr ng-repeat="category in categories">
-        <td><a class="btn btn-default" ui-sref="categories.details({id:category.id})">{{category.name}}</a></td>
-        <td>{{category.description}} {{category.count}}</td>
-    </tr>
+  <tr>
+    <td>
+      <h3>Sub Categories</h3>
+    </td>
+     <td></td>
+  </tr>
+  <tr ng-repeat="category in categories">
+    <td><a class="btn btn-default" ui-sref="categories.details({id:category.id})">{{category.name}}</a></td>
+    <td>{{category.description}} {{category.count}}</td>
+  </tr>
 </table>
 
 <table class="table" ng-show="decks.content.length > 0">
-    <tr>
-        <td>
-            <h3>Decks</h3>
-        </td>
-       <td></td>
-    </tr>
+  <tr>
+    <td>
+      <h3>Decks</h3>
+    </td>
+     <td></td>
+  </tr>
 
-    <tr ng-repeat="deck in decks.content">
-        <td>{{deck.id}}</td>
-        <td>{{deck.description}}</td>
-    </tr>
+  <tr ng-repeat="deck in decks.content">
+    <td>{{deck.id}}</td>
+    <td><a ui-sref="deck.details({id: deck.id})">{{deck.description}}</a></td>
+    <td><a class='btn btn-primary btn-sm' ui-sref="playback.deck({id:deck.id})">study</a></td>
+  </tr>
 </table>
 
 <table class="table" ng-show="banks.content.length > 0">
-    <tr>
-        <td>
-            <h3>Banks</h3>
-        </td>
-       <td></td>
-    </tr>
+  <tr>
+    <td>
+      <h3>Banks</h3>
+    </td>
+    <td></td>
+  </tr>
 
-    <tr ng-repeat="bank in banks.content">
-        <td>{{bank.id}}</td>
-        <td><a ui-sref="bank.details({id: bank.id})">{{bank.description}}</a></td>
-        <td><a class='btn btn-primary btn-sm' ui-sref="playback.bank({id: bank.id})">study</a></td>
-    </tr>
+  <tr ng-repeat="bank in banks.content">
+    <td>{{bank.id}}</td>
+    <td><a ui-sref="bank.details({id: bank.id})">{{bank.description}}</a></td>
+    <td><a class='btn btn-primary btn-sm' ui-sref="playback.bank({id: bank.id})">study</a></td>
+  </tr>
 </table>
 
 
