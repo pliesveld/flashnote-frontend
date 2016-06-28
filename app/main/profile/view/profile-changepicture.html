@@ -1,0 +1,17 @@
+<div class="alert alert-danger" ng-show="controller.error">
+	There was a problem logging in. Please try again.
+</div>
+<div class="container">
+  <form name="pictueForm" role="form"
+    ng-submit="controller.uploadProfilePicture(pictueForm.$valid)" novalidate>
+
+    <img holder data-src="holder.js/128x128?text=picture preview" class="img-thumbnail">
+
+    <div class="form-group">
+      <label for="picture">Profile Picture:</label>
+      <input class="form-control" type="file" name="file"></input>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-disabled="pictueForm.$invalid">Submit</button>
+  </form>
+</div>

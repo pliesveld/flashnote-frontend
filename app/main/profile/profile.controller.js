@@ -3,6 +3,10 @@ angular.module('flashnoteApp.profile.controllers', ['ui.router'])
   })
   .controller('ProfileMainCtrl', function($state) {
   })
+  .controller('ProfileChangePictureCtrl', function($state, $log) {
+
+    self.uploadProfilePicture = function() { $log.debug('uploading picture'); };
+  })
   .controller('ProfileChangePasswordCtrl', function($state, $log) {
     var self = this;
 

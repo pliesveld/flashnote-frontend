@@ -23,6 +23,12 @@ angular.module('flashnoteApp.profile')
         templateUrl : 'main/profile/view/profile-changepassword.html',
         controller: 'ProfileChangePasswordCtrl',
         controllerAs: 'controller'
+      })
+      .state('profile.details.changepicture', {
+        url : "/picture",
+        templateUrl : 'main/profile/view/profile-changepicture.html',
+        controller: 'ProfileChangePictureCtrl',
+        controllerAs: 'controller'
       });
 
   });

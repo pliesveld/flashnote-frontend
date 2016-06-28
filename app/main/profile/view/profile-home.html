@@ -1,67 +1,67 @@
 <div class="container">
-    <div class="row">
-        <div class="col-s-8 col-m-4">
-            <h4>Your flashnotes</h4>
-            <ul class="container">
-                <div class="row">
-                    <div ng-repeat="deck in controller.myrecentdecks">
+  <div class="row">
+    <div class="col-s-8 col-m-4">
+      <h4>Your flashnotes</h4>
+      <ul class="container">
+        <div class="row">
+          <div ng-repeat="deck in controller.myrecentdecks">
 
-                        <li class="list-inline">
+            <li class="list-inline">
 
-                            <div class="col-xs-3">
-                                <a ui-sref="deckView(deck.id)">
-                                    <span>{{deck.title}}</span>
-                                </a>
-                            </div>
+              <div class="col-xs-3">
+                <a ui-sref="deckView(deck.id)">
+                  <span>{{deck.title}}</span>
+                </a>
+              </div>
 
 
-                            <div class="col-xs-7">
-                                <span>{{deck.date_modified}}</span>
-                                <a class="pull-right" ui-sref="deckView(deck.id)">
-                                    <span class="glyphicon glyphicon-wrench"></span>
-                                </a>
-                            </div>
-                        </li>
+              <div class="col-xs-7">
+                <span>{{deck.date_modified}}</span>
+                <a class="pull-right" ui-sref="deckView(deck.id)">
+                  <span class="glyphicon glyphicon-wrench"></span>
+                </a>
+              </div>
+            </li>
 
-                    </div>
+          </div>
 
-                    <div class="col-xs-7">
-                        <li class="list-inline"><a class="btn btn-default btn-xs home-btn" ui-sref="deckViewAll">view all</a></li>
-                    </div>
+          <div class="col-xs-7">
+            <li class="list-inline"><a class="btn btn-default btn-xs home-btn" ui-sref="deckViewAll">view all</a></li>
+          </div>
 
-                </div>
-            </ul>
         </div>
-
-        <div class="col-s-8 col-m-4">
-            <h4>Notifications</h4>
-            <ul class="container">
-                <div class="row">
-
-                    <div ng-repeat="notification in controller.notifications">
-                        <li class="list-inline">
-
-                            <div class="col-xs-3">
-                                <a ng-hide="!notification.from || (notification.from && notification.from.name == 'SYSTEM')">
-                                <span>{{notification.from.name}}</span>
-                                </a>
-                            </div>
-
-                            <div class="col-xs-7">
-                                <label ng-class="controller.msg_class(notification.type)">
-                                    {{notification.message}}
-                                </label>
-                            </div>
-                        </li>
-                    </div>
-
-                    <div class="col-xs-7">
-                        <li class="list-inline"><a class="btn btn-default btn-xs home-btn" ui-sref="notificationViewAll">history</a></li>
-                    </div>
-
-                </div>
-            </ul>
-        </div>
-
+      </ul>
     </div>
+
+    <div class="col-s-8 col-m-4">
+      <h4>Notifications</h4>
+      <ul class="container">
+        <div class="row">
+
+          <div ng-repeat="notification in controller.notifications">
+            <li class="list-inline">
+
+              <div class="col-xs-3">
+                <a ng-hide="!notification.from || (notification.from && notification.from.name == 'SYSTEM')">
+                <span>{{notification.from.name}}</span>
+                </a>
+              </div>
+
+              <div class="col-xs-7">
+                <label ng-class="controller.msg_class(notification.type)">
+                  {{notification.message}}
+                </label>
+              </div>
+            </li>
+          </div>
+
+          <div class="col-xs-7">
+            <li class="list-inline"><a class="btn btn-default btn-xs home-btn" ui-sref="notificationViewAll">history</a></li>
+          </div>
+
+        </div>
+      </ul>
+    </div>
+
+  </div>
 </div>
