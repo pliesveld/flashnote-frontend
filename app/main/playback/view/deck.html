@@ -1,20 +1,21 @@
 <h4>{{controller.title}}</h4>
 <div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <button class="btn btn-primary btn-lg" ng-click="controller.prev()">prev</button>
 
-            <div class="pull-right">
-                <button class="btn btn-primary btn-lg" ng-click="controller.show()" ng-show="!controller.showAnswer">show</button>
-                <button class="btn btn-primary btn-lg" ng-click="controller.next()" ng-show="controller.showAnswer">next</button>
-            </div>
-        </div>
-
-
-        <div class="panel-body well" ng-show="!controller.showAnswer"><h2 class="playback-content playback-question">{{controller.question}}</h2></div>
-
-        <div class="panel-body well" ng-show="controller.showAnswer"><h2 class="playback-content playback-answer">{{controller.answer}}</h2></div>
-
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <p>Displaying {{controller.currentIdx + 1}} of
+        {{controller.maxIdx + 1}}</p>
     </div>
+
+    <ul class="pager">
+      <li ng-class="['previous', {disabled:{{controller.currentIdx === 0}}}]"><a href ng-click="controller.prev()">prev</a></li>
+      <li class="next" ng-show="!controller.showAnswer"><a href ng-click="controller.show()">show</a></li>
+      <li ng-class="['next', {disabled:{{controller.currentIdx >= controller.maxIdx}}}]" ng-show="controller.showAnswer"><a href ng-click="controller.next()">next</a></li>
+    </ul>
+
+    <div class="panel-body well" ng-show="!controller.showAnswer"><h2 class="playback-content playback-question">{{controller.question()}}</h2></div>
+    <div class="panel-body well" ng-show="controller.showAnswer"><h2 class="playback-content playback-answer">{{controller.answer()}}</h2></div>
+
+  </div>
 </div>
 

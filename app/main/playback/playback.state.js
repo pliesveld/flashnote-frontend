@@ -24,5 +24,10 @@ angular.module('flashnoteApp.playback')
         controller : 'PlaybackDeckCtrl',
         controllerAs : 'controller',
         params: {id: null},
+        resolve: {
+          deck: function($stateParams, Deck) {
+            return Deck.get({id: $stateParams.id}).$promise;
+          }
+        },
       });
   });

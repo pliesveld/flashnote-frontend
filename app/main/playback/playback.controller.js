@@ -19,33 +19,58 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
       return self.questions[self.currentIdx].content;
     };
 
-    self.next = function() { 
+    self.next = function() {
       console.log('next!');
       if(self.currentIdx < self.maxIdx) {
         self.currentIdx += 1;
       }
     };
 
-    self.prev = function() { 
+    self.prev = function() {
       if(self.currentIdx > 0) {
         self.currentIdx -= 1;
       }
     };
 
-    self.test = self.questions;
-
   })
-  .controller("PlaybackDeckCtrl", function($stateParams, Deck) {
+  .controller("PlaybackDeckCtrl", function($stateParams, deck) {
     var self = this;
 
     self.showAnswer = false;
-    self.deck = Deck.get({ id : $stateParams.id });
-    self.title = "Playing back flashnotes from deck {{title}}";
-    self.question = "This is an example question.";
-    self.answer = "This is an answer.";
-    self.show = function() { self.showAnswer = true; };
-    self.next = function() { self.showAnswer = false; };
-    self.prev = function() { console.log("prev!"); };
+    self.deckId = deck.id;
+
+    self.deck = deck;
+    self.title = deck.description;
+
+    self.currentIdx = 0;
+    self.maxIdx = deck.flashcards.length - 1;
+
+    self.question = function() {
+      return self.deck.flashcards[self.currentIdx].question.content;
+    };
+
+    self.answer = function() {
+      return self.deck.flashcards[self.currentIdx].answer.content;
+    };
+
+    self.show = function() {
+      self.showAnswer = true;
+    };
+
+    self.next = function() {
+      if(self.currentIdx < self.maxIdx) {
+        self.showAnswer = false;
+        self.currentIdx += 1;
+      }
+    };
+
+    self.prev = function() {
+      if(self.showAnswer === true)
+        self.showAnswer = false;
+      else if(self.currentIdx > 0) {
+        self.currentIdx -= 1;
+      }
+    };
   })
   .controller("PlaybackMainCtrl", function($stateParams) {
     var self = this;
