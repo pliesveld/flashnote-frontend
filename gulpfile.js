@@ -18,7 +18,7 @@ gulp.task('bootstrap-copy', function() {
     .pipe(gulp.dest('app/vendor/fonts/'));
 });
 
-gulp.task('angular-concat', ['vendor-dev'], function() {
+gulp.task('angular-concat', function() {
   var bower_base = 'app/bower_components/';
 
   var vendor_ang = [];
@@ -37,7 +37,7 @@ gulp.task('angular-concat', ['vendor-dev'], function() {
     .pipe(gulp.dest('app/vendor/js'));
 });
 
-gulp.task('vendor-dev', function() {
+gulp.task('vendor-dev', ['bootstrap-copy', 'angular-concat'], function() {
   var bower_base = 'app/bower_components/';
 
   var vendor_ang = [];
