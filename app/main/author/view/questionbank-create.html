@@ -1,22 +1,35 @@
 <form role="form" ng-submit="controller.submit()">
 
     <div class="form-group">
-        <div class="col-sm-2">
+        <div class="col-sm-2 col-md-2">
             <label for="description" class="control-label">Description</label>
         </div>
-        <div class="col-sm-12">
-            <input type="text" disabled ng-model="controller.questionBank.description" class="form-control" id="title" placeholder="Description Here"/>
+        <div class="col-sm-12 col-md-10">
+            <input type="text" ng-model="controller.questionBank.description" class="form-control" id="title" placeholder="Description Here"/>
         </div>
     </div>
 
+    <!--
     <div class="form-group">
-        <div class="col-sm-2">
+        <div class="col-sm-2 col-md-2">
             <label for="category" class="control-label">Category</label>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-md-10">
             <input type="text" disabled ng-model="controller.questionBank.category.name" class="form-control" id="category" placeholder="Select Category"/>
         </div>
     </div>
+    -->
+
+    <div class="form-group">
+        <div class="col-sm-2 col-md-2">
+            <label for="category" class="control-label">Category</label>
+        </div>
+        <div class="col-sm-12 col-md-10">
+            <select ng-model="controller.questionBank.category" ng-options="category.name for category in controller.categories" class="form-control" id="category" placeholder="Select Category"></select>
+        </div>
+    </div>
+
+
 
     <div class="form-group">
         <div class="col-sm-10">

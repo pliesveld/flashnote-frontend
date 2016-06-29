@@ -6,12 +6,14 @@ angular.module('flashnoteApp.author.controllers', ['ui.router'])
 
       //$log.debug("AuthorCtrl", self);
   })
-  .controller("DeckCreateCtrl", function(Deck) {
+  .controller("DeckCreateCtrl", function($log, $state, Deck) {
       var self = this;
       self.currentFlashcard = { question: { content: "" }, answer: { content: "" } };
+      self.categories = [{ name: "TEST CATEGORY", id: 500},{name: "TEST SUB CATEGORY", id: 501}];
       self.deck = new Deck();
-      self.deck.category = { name: "TEST CATEGORY", id: 500 };
-      self.deck.description = "TEST DESCRIPTION";
+      self.deck.category = self.categories[0];
+
+      self.deck.description = "";
       self.deck.flashcards = [];
 
       self.addFile = function() {
@@ -30,17 +32,19 @@ angular.module('flashnoteApp.author.controllers', ['ui.router'])
       };
 
       self.submit= function() { 
-        self.deck.$save(function() {
-          console.log("saved!"); 
+        self.deck.$save(function(deck) {
+          $log.debug("saved!", deck);
+          $state.go('deck.details', {id: deck.id});
         });
       };
   })
   .controller("QuestionBankCreateCtrl", function($log, $state, QuestionBank) {
       var self = this;
       self.currentQuestion = { content: "" };
+      self.categories = [{name: "TEST CATEGORY", id: 500},{name: "TEST SUB CATEGORY", id: 501}];
       self.questionBank = new QuestionBank();
-      self.questionBank.category = { name: "TEST CATEGORY", id: 500};
-      self.questionBank.description = "TEST DESCRIPTION";
+      self.questionBank.category = self.categories[0];
+      self.questionBank.description = "";
       self.questionBank.questions = [];
 
       self.addFile = function() {
@@ -60,6 +64,7 @@ angular.module('flashnoteApp.author.controllers', ['ui.router'])
       self.submit = function() { 
         self.questionBank.$save(function(questionBank) {
           $log.debug("saved!", questionBank);
+          $state.go('bank.details', {id: questionBank.id});
         });
       };
   });
