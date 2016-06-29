@@ -6,7 +6,7 @@
   "description": "Angular frontend for Flashnote service",
   "main": "index.html",
   "license": "MIT",
-  "homepage": "http://github.com/pliesveld/flashnote",
+  "homepage": "http://github.com/pliesveld/flashnote-frontend",
   "ignore": [
     "**/.*",
     "node_modules",
