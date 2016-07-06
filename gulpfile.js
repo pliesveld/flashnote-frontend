@@ -4,6 +4,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var browserify = require('gulp-browserify');
 var browserSync = require('browser-sync').create();
+var replace = require('gulp-replace');
 var clean = require('gulp-clean');
 var debug = require('gulp-debug');
 
@@ -81,6 +82,7 @@ gulp.task('js', function() {
     'app/components/**/*.js', 
     'app/main/**/*.js'])
   .pipe(debug())
+  .pipe(replace(/##API_ENDPOINT##/, 'localhost:9000'))
   .pipe(concat('frontend.js'))
   .pipe(gulp.dest('app/js'));
 });
