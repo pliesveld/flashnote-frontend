@@ -10,7 +10,7 @@ angular.module('flashnoteApp', [
   'flashnoteApp.author',
   'flashnoteApp.browse'
 ])
-.value('API_ENDPOINT', 'http://lalmec.no-ip.info:9000')
+.value('API_ENDPOINT', 'http://##API_ENDPOINT##/')
   .run(function(auth, $rootScope, $log) {
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options) {
