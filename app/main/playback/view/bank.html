@@ -10,10 +10,18 @@
         {{controller.maxIdx + 1}}</p>
     </div>
 
+    <button class='btn btn-primary' ng-click="controller.playSpeech()">Click Me!</button>
+
     <ul class="pager">
       <li class="previous" ng-class="{disabled:{{controller.currentIdx > 0}}}"><a href ng-click="controller.prev()">prev</a></li>
       <li class="next" ng-class="{disabled:{{controller.currentIdx >= controller.maxIdx}}}"><a href ng-click="controller.next()">next</a></li>
     </ul>
+
+    <div class='row' ng-if="controller.hasAttachment()" >
+      <div class='col-md-12'>
+        <img ng-src='{{controller.attachmentURL()}}'>
+      </div>
+    </div>
 
     <div class="panel-body well">
       <h2 class="playback-content playback-question">{{controller.question()}}</h2>

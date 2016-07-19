@@ -1,5 +1,5 @@
-angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
-  .controller("PlaybackBankCtrl", function($scope, $stateParams, questionbank) {
+angular.module('flashnoteApp.playback.controllers', ['ngAudio', 'flashnoteApp.resource'])
+  .controller("PlaybackBankCtrl", function($scope, $stateParams, ngAudio, API_ENDPOINT, questionbank) {
     var self = this;
 
     self.showAnswer = false;
@@ -19,6 +19,26 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
       return self.questions[self.currentIdx].content;
     };
 
+    self.questionId = function() {
+      return self.questionObj().id;
+    };
+
+    self.questionObj = function() {
+      return self.questions[self.currentIdx];
+    };
+
+    self.attachmentURL = function() {
+      return API_ENDPOINT + "/attachments/" + self.questionObj().attachment.id;
+    };
+
+    self.hasAttachment = function() {
+      return self.questions[self.currentIdx].attachment && self.questions[self.currentIdx].attachment.id;
+    };
+
+    self.playSpeech = function() {
+      ngAudio.play(API_ENDPOINT + "/speech/question/" + self.questionId());
+    };
+
     self.next = function() {
       console.log('next!');
       if(self.currentIdx < self.maxIdx) {
@@ -33,7 +53,7 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
     };
 
   })
-  .controller("PlaybackDeckCtrl", function($stateParams, deck) {
+  .controller("PlaybackDeckCtrl", function($stateParams, ngAudio, API_ENDPOINT, deck) {
     var self = this;
 
     self.showAnswer = false;
@@ -45,6 +65,15 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
     self.currentIdx = 0;
     self.maxIdx = deck.flashcards.length - 1;
 
+
+    self.questionObj = function() {
+      return self.deck.flashcards[self.currentIdx].question;
+    };
+
+    self.answerObj = function() {
+      return self.deck.flashcards[self.currentIdx].answer;
+    };
+
     self.question = function() {
       return self.deck.flashcards[self.currentIdx].question.content;
     };
@@ -52,6 +81,15 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
     self.answer = function() {
       return self.deck.flashcards[self.currentIdx].answer.content;
     };
+
+    self.questionId = function() {
+      return self.questionObj().id;
+    };
+
+    self.answerId = function() {
+      return self.answerObj().id;
+    };
+
 
     self.show = function() {
       self.showAnswer = true;
@@ -71,6 +109,23 @@ angular.module('flashnoteApp.playback.controllers', ['flashnoteApp.resource'])
         self.currentIdx -= 1;
       }
     };
+
+    self.attachmentURL = function() {
+      return API_ENDPOINT + "/attachments/" + self.questionObj().attachment.id;
+    };
+
+    self.hasAttachment = function() {
+      return self.questionObj.attachment && self.questionObj.attachment.id;
+    };
+
+    self.playSpeech = function() {
+      if(self.showAnswer) {
+        ngAudio.play(API_ENDPOINT + "/speech/answer/" + self.answerId());
+      } else {
+        ngAudio.play(API_ENDPOINT + "/speech/question/" + self.questionId());
+      }
+    };
+
   })
   .controller("PlaybackMainCtrl", function($stateParams) {
     var self = this;
