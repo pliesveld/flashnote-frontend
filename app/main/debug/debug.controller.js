@@ -1,4 +1,4 @@
-angular.module('flashnoteApp.debug.controllers', [])
+angular.module('flashnoteApp.debug.controllers', ['hljs'])
   .controller('CacheController', ['CategoryCache', function(CategoryCache) {
     var self = this;
 
@@ -13,4 +13,6 @@ angular.module('flashnoteApp.debug.controllers', [])
 
     self.debug = function() { CategoryCache.debug(); };
   }
-  ]);
+  ]).controller('HighlightController', function() {
+    var self = this;
+  });

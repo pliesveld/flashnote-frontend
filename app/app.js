@@ -1,6 +1,7 @@
 angular.module('flashnoteApp', [
-  'ngHolder',
   'ui.router', 
+  'hljs',
+  'ngHolder',
   'flashnoteApp.debug',
   'flashnoteApp.resource',
   'flashnoteApp.navigation',

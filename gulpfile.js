@@ -19,16 +19,19 @@ gulp.task('bootstrap-copy', function() {
     .pipe(gulp.dest('app/vendor/fonts/'));
 });
 
-gulp.task('angular-concat', function() {
+gulp.task('vendor-concat', function() {
   var bower_base = 'app/bower_components/';
+  var other_base = 'app/external/js/';
 
   var vendor_ang = [];
 
   vendor_ang.push(bower_base + 'jquery/dist/jquery.js');
+  vendor_ang.push(other_base + 'highlight.min.js');
   vendor_ang.push(bower_base + 'angular/angular.js');
   vendor_ang.push(bower_base + 'angular-cookies/angular-cookies.js');
   vendor_ang.push(bower_base + 'angular-resource/angular-resource.js');
   vendor_ang.push(bower_base + 'angular-ui-router/release/angular-ui-router.js');
+  vendor_ang.push(bower_base + 'angular-highlightjs/angular-highlightjs.js');
   vendor_ang.push(bower_base + 'angular-audio/app/angular.audio.js');
   vendor_ang.push(bower_base + 'bootstrap/dist/js/bootstrap.js');
   vendor_ang.push(bower_base + 'holderjs/holder.js');
@@ -42,7 +45,7 @@ gulp.task('angular-concat', function() {
     .pipe(gulp.dest('app/vendor/js'));
 });
 
-gulp.task('vendor-dev', ['bootstrap-copy', 'angular-concat'], function() {});
+gulp.task('vendor-dev', ['bootstrap-copy', 'vendor-concat'], function() {});
 
 
 gulp.task('sass', function() {
