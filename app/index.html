@@ -33,10 +33,12 @@
           </a>
         </li>
 
-        <li ui-sref-active="active">
-          <a ui-sref="author">
-            <span class="hidden-xs glyphicon glyphicon-pencil"></span> author
-          </a>
+        <li ui-sref-active="active" class="dropdown">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="hidden-xs glyphicon glyphicon-pencil"></span>Author <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a ui-sref="author.questionbank">QuestionBank</a></li>
+          <li><a ui-sref="author.deck">Deck</a></li>
+        </ul>
         </li>
 
         <li ui-sref-active="active">

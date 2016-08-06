@@ -25,7 +25,6 @@ angular.module('flashnoteApp.author.controllers', ['ui.router'])
         self.currentFlashcard = { question: { content: "" }, answer: { content: "" } };
       };
 
-
       self.removeFlashcard = function(index) {
         console.log("Removing index", index);
         delete self.deck.flashcards[index];
@@ -35,6 +34,8 @@ angular.module('flashnoteApp.author.controllers', ['ui.router'])
         self.deck.$save(function(deck) {
           $log.debug("saved!", deck);
           $state.go('deck.details', {id: deck.id});
+        }, function(error) {
+          console.log(error.data);
         });
       };
   })
