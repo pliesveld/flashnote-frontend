@@ -25,7 +25,7 @@
     "angular-route": "1.4.9",
     "holderjs": "^2.9.3",
     "angular-holderjs": "^1.1.0",
-    "angular-audio": "^1.7.2"
+    "angular-audio": "^1.7.2",
     "angular-highlightjs": "^0.6.1"
   },
   "devDependencies": {
